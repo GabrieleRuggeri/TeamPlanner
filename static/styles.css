@@ -98,6 +98,20 @@ input, select {
   overflow-x: auto;
 }
 
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.calendar-range {
+  font-weight: 600;
+  color: var(--text);
+}
+
 .calendar table {
   border-collapse: collapse;
   width: 100%;
@@ -116,6 +130,16 @@ input, select {
   background: #f3f4f6;
   color: var(--muted);
   font-size: 0.8rem;
+}
+
+.calendar .day-label {
+  display: block;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.calendar .date-label {
+  display: block;
 }
 
 .status-cell {
