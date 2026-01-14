@@ -40,6 +40,33 @@ sequenceDiagram
 - **SQLModel + SQLite** store team members and non-office schedule entries.
 - **Environment-based configuration** via `.env` and `DATABASE_URL`.
 
+### Database schema
+TeamPlanner persists data in two tables (names are the SQLModel defaults derived from the class names).
+
+#### `user`
+- **Columns**
+  - `id` (integer, primary key, auto-increment)
+  - `name` (string, required)
+  - `email` (string, required)
+- **Notes**
+  - Stores the roster of team members.
+
+#### `scheduleentry`
+- **Columns**
+  - `id` (integer, primary key, auto-increment)
+  - `user_id` (integer, required, foreign key → `user.id`, indexed)
+  - `day` (date, required, indexed)
+  - `status` (string enum: `office`, `smart`, `away`)
+- **Constraints & indexes**
+  - Unique constraint on (`user_id`, `day`) to prevent multiple entries for the same user/day.
+  - Indexes on `user_id` and `day` to speed up calendar range queries.
+- **Relationships**
+  - Many schedule entries belong to one user (one-to-many).
+
+#### Storage behavior
+- Only non-office days are stored to keep the schedule lean; missing rows imply `office`.
+- SQLite is the default local store, while Docker uses Postgres via `DATABASE_URL`.
+
 ### Core endpoints
 - `GET /api/users`
 - `POST /api/users`

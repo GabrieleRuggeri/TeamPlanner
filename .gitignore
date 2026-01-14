@@ -56,3 +56,6 @@ temp/
 
 *.pyc
 app/__pycache__/
+*.db
+*.lock
+uv.*
