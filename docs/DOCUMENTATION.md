@@ -53,6 +53,18 @@ sequenceDiagram
 - [uv](https://github.com/astral-sh/uv) for dependency management (preferred)
 - Docker + Docker Compose (optional, for containerized run)
 
+### Dependencies
+Runtime dependencies (pinned in `requirements.txt` and `pyproject.toml`):
+- FastAPI, Uvicorn
+- SQLModel, Pydantic Settings
+- `psycopg2-binary` (Postgres driver for Docker usage)
+
+Optional development dependencies (from `pyproject.toml` extras):
+- pytest, httpx
+- black, isort, mypy, pylint
+
+No API keys are required.
+
 ### Local setup
 ```bash
 uv venv
