@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TeamPlanner - Planning</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>TeamPlanner</h1>
+      <nav>
+        <a href="/static/index.html">Users</a>
+        <a href="/static/planning.html">Planning</a>
+      </nav>
+    </header>
+    <main>
+      <section class="card">
+        <h2>Smart-working & days off planning</h2>
+        <p class="helper">
+          Click any cell to cycle between Office (empty), Smart-working (S), and
+          Away (A).
+        </p>
+      </section>
+      <section class="card calendar">
+        <table id="planning-table">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+      <section class="card">
+        <h2>Current week attendance</h2>
+        <div class="stats-grid" id="stats-grid"></div>
+      </section>
+    </main>
+    <script src="/static/planning.js"></script>
+  </body>
+</html>

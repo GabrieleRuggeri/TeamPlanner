@@ -1,0 +1,176 @@
+:root {
+  color-scheme: light;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  --primary: #2f6fed;
+  --smart: #58a6ff;
+  --away: #41c784;
+  --border: #dfe3ea;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --bg: #f9fafb;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 600;
+  margin-left: 1rem;
+}
+
+main {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(16, 24, 40, 0.04);
+}
+
+.button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.button.secondary {
+  background: #eef2ff;
+  color: var(--primary);
+}
+
+input, select {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.95rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  padding: 0.8rem;
+}
+
+.table th {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.calendar {
+  overflow-x: auto;
+}
+
+.calendar table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 900px;
+}
+
+.calendar th,
+.calendar td {
+  border: 1px solid var(--border);
+  text-align: center;
+  padding: 0.6rem;
+  min-width: 60px;
+}
+
+.calendar th {
+  background: #f3f4f6;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.status-cell {
+  cursor: pointer;
+  font-weight: 700;
+  transition: background 0.2s ease;
+}
+
+.status-office {
+  background: white;
+}
+
+.status-smart {
+  background: var(--smart);
+  color: white;
+}
+
+.status-away {
+  background: var(--away);
+  color: white;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.stat {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  background: #f8fafc;
+}
+
+.stat h3 {
+  margin: 0 0 0.3rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.stat p {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.helper {
+  color: var(--muted);
+  font-size: 0.85rem;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TeamPlanner - Users</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>TeamPlanner</h1>
+      <nav>
+        <a href="/static/index.html">Users</a>
+        <a href="/static/planning.html">Planning</a>
+      </nav>
+    </header>
+    <main>
+      <section class="card">
+        <h2>Team members</h2>
+        <p class="helper">Add or review the 5-10 members in your team.</p>
+        <form id="user-form" class="form-row">
+          <input
+            type="text"
+            id="user-name"
+            placeholder="Full name"
+            required
+          />
+          <input
+            type="email"
+            id="user-email"
+            placeholder="Email address"
+            required
+          />
+          <button class="button" type="submit">+ Add user</button>
+        </form>
+      </section>
+      <section class="card">
+        <table class="table" id="user-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+    <script src="/static/users.js"></script>
+  </body>
+</html>

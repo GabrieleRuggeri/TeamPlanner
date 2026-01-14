@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: teamplanner
+      POSTGRES_PASSWORD: teamplanner
+      POSTGRES_DB: teamplanner
+    volumes:
+      - teamplanner_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U teamplanner -d teamplanner"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  app:
+    build: .
+    environment:
+      APP_NAME: TeamPlanner
+      ENVIRONMENT: docker
+      DATABASE_URL: postgresql+psycopg2://teamplanner:teamplanner@db:5432/teamplanner
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  teamplanner_pgdata:

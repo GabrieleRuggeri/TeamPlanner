@@ -1,0 +1,47 @@
+[project]
+name = "teamplanner"
+version = "0.1.0"
+description = "Team planning web app for smart-working and days off."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "TeamPlanner Contributors"}]
+dependencies = [
+  "fastapi==0.110.0",
+  "uvicorn==0.27.1",
+  "sqlmodel==0.0.16",
+  "pydantic-settings==2.2.1",
+  "psycopg2-binary==2.9.9",
+]
+
+[project.optional-dependencies]
+dev = [
+  "black==24.4.0",
+  "isort==5.13.2",
+  "mypy==1.9.0",
+  "pylint==3.1.0",
+  "pytest==8.1.1",
+  "httpx==0.27.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pylint.messages_control]
+max-line-length = 88
+disable = ["too-few-public-methods", "duplicate-code"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
