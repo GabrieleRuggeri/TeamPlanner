@@ -1,8 +1,9 @@
 """FastAPI application entrypoint for TeamPlanner."""
 
+from contextlib import asynccontextmanager
 from datetime import date
 import logging
-from typing import Iterable
+from typing import AsyncIterator, Iterable
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.responses import RedirectResponse
@@ -20,15 +21,18 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 settings = get_settings()
-app = FastAPI(title=settings.app_name)
 
 
-@app.on_event("startup")
-def on_startup() -> None:
-    """Initialize application resources."""
+@asynccontextmanager
+async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+    """Initialize and teardown application resources."""
 
     init_db()
     logger.info("Database initialized")
+    yield
+
+
+app = FastAPI(title=settings.app_name, lifespan=lifespan)
 
 
 @app.get("/health")
@@ -102,7 +106,7 @@ def read_schedule(
     if start > end:
         raise HTTPException(status_code=400, detail="Start date must precede end")
     entries = crud.get_schedule_entries(session, start, end)
-    return [ScheduleResponse(**entry.dict()) for entry in entries]
+    return [ScheduleResponse(**entry.model_dump()) for entry in entries]
 
 
 @app.put("/api/schedule", response_model=list[ScheduleResponse])
@@ -122,7 +126,7 @@ def update_schedule(
     entries: Iterable[ScheduleEntry] = crud.upsert_schedule_entry(
         session, payload.user_id, payload.day, payload.status
     )
-    return [ScheduleResponse(**entry.dict()) for entry in entries]
+    return [ScheduleResponse(**entry.model_dump()) for entry in entries]
 
 
 app.mount("/static", StaticFiles(directory="static"), name="static")

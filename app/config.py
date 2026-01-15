@@ -2,7 +2,7 @@
 
 from functools import lru_cache
 
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -18,11 +18,7 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./teamplanner.db"
     environment: str = "local"
 
-    class Config:
-        """Pydantic settings configuration."""
-
-        env_file = ".env"
-        case_sensitive = False
+    model_config = SettingsConfigDict(env_file=".env", case_sensitive=False)
 
 
 @lru_cache

@@ -99,6 +99,41 @@ source .venv/bin/activate
 uv pip install -r requirements.txt
 ```
 
+### Local testing
+Tests are run with `pytest` and live under `tests/`. They use an in-memory SQLite database, so you don't need Docker/Postgres to run them.
+
+If you haven't created a virtual environment yet, run:
+```bash
+uv venv
+```
+
+Activate the environment:
+- macOS/Linux:
+  ```bash
+  source .venv/bin/activate
+  ```
+- Windows (PowerShell):
+  ```powershell
+  .\.venv\Scripts\Activate.ps1
+  ```
+
+Install runtime + test dependencies:
+```bash
+uv pip install -r requirements.txt
+uv pip install "pytest==8.1.1" "httpx==0.27.0"
+```
+
+Run the full test suite from the repository root:
+```bash
+pytest
+```
+
+Common variants:
+```bash
+pytest tests/test_api.py
+pytest -k user_lifecycle
+```
+
 ### Environment
 Create a `.env` file based on `.env.example`:
 ```bash
